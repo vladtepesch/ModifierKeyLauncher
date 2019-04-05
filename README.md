@@ -6,6 +6,8 @@ It can be installed to start different applications depending on the modifier ke
 Revision History
 ----------------
 
+- 2019-05-04 V 1.1
+  - release on github
 - 2015-06-23 V 1.0
   - initial Release
 
