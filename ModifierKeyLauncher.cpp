@@ -13,9 +13,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
   (void)nCmdShow;
 
   int selectedArg = -1;
-  int  argc;
+  int argc;
+
   auto argv =  CommandLineToArgvW(lpCmdLine, &argc);
-  
+
+  if(wcslen(lpCmdLine) == 0){
+    argc = 0; // mitigate strange behaviour that CommandLineToArgvW on empty params returns the exe path - causing calling itself over and over again
+  }
+
   bool isShift = (GetKeyState( VK_SHIFT  ) & 0x8000)!=0;
   bool isCtrl  = (GetKeyState( VK_CONTROL) & 0x8000)!=0;
   bool isAlt   = (GetKeyState( VK_MENU   ) & 0x8000)!=0;
