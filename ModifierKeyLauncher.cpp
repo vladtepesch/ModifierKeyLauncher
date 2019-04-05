@@ -8,6 +8,10 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
                      LPTSTR    lpCmdLine,
                      int       nCmdShow)
 {
+  (void)hInstance;
+  (void)hPrevInstance;
+  (void)nCmdShow;
+
   int selectedArg = -1;
   int  argc;
   auto argv =  CommandLineToArgvW(lpCmdLine, &argc);
