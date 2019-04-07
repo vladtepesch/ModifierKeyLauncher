@@ -10,35 +10,31 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 {
   (void)hInstance;
   (void)hPrevInstance;
+  (void)lpCmdLine;
   (void)nCmdShow;
 
   int selectedArg = -1;
   int argc;
 
-  auto argv =  CommandLineToArgvW(lpCmdLine, &argc);
-
-  if(wcslen(lpCmdLine) == 0){
-    argc = 0; // mitigate strange behaviour that CommandLineToArgvW on empty params returns the exe path - causing calling itself over and over again
-  }
+  auto argv =  CommandLineToArgvW(GetCommandLineW(), &argc);
 
   bool isShift = (GetKeyState( VK_SHIFT  ) & 0x8000)!=0;
   bool isCtrl  = (GetKeyState( VK_CONTROL) & 0x8000)!=0;
   bool isAlt   = (GetKeyState( VK_MENU   ) & 0x8000)!=0;
 
   //MessageBoxW(0, lpCmdLine, TEXT("commandline"), MB_OK	);
+  //for( int i=0; i< argc; ++i){
+  //  MessageBoxW(0, argv[i], TEXT("argv"), MB_OK	);
+  //}
 
-//   for( int i=0; i< argc; ++i){
-//     MessageBoxW(0, argv[i], TEXT("argv"), MB_OK	);
-//   }
-
-  if(isShift && argc >= 2){
-    selectedArg = 1;
-  }else if(isCtrl && argc >=3){
+  if(isShift && argc > 2){
     selectedArg = 2;
-  }else if(isAlt  && argc >= 4){
+  }else if(isCtrl && argc > 3){
     selectedArg = 3;
-  }else if(argc >= 1){
-    selectedArg = 0;
+  }else if(isAlt  && argc > 4){
+    selectedArg = 4;
+  }else if(argc >  1){
+    selectedArg = 1;
   }else{
     MessageBoxW(0, TEXT("no args"), TEXT("error"), MB_OK	);
   }
@@ -49,7 +45,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
   }
 
 
-  GlobalFree(argv);
+  LocalFree(argv);
   return 0;
 }
 
