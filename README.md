@@ -96,7 +96,7 @@ choose between different calculators:
 - open regedit
 - create (if not exist) a key  
   `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AppKey\18`
-- create a string value `ShellExecut` 
+- create a string value `ShellExecute` 
 - set the value to:  
  `c:\PathToTool\ModifierKeyLauncher.exe  "C:\somePath\Microsoft Calculator Plus\CalcPlus.exe" "calc.exe" "C:\somePath\SpeedCrunch.exe" `
 
